@@ -1,8 +1,33 @@
 security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    role_hierarchy:
+        ROLE_USER: ~
+        ROLE_ADMIN: ROLE_USER
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        in_memory:
+            memory:
+                users:
+                    admin: {password: admin, roles: ['ROLE_ADMIN']}
     firewalls:
+        auth_area:
+            pattern: ^/admin/login$
+            security: false
+        admin_area:
+            pattern: ^/
+            anonymous: true
+            form_login:
+                login_path: auth_login
+                check_path: auth_check
+                default_target_path: auth_index
+                username_parameter: form[login]
+                password_parameter: form[password]
+            logout:
+                path: auth_logout
+                target: auth_index
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -20,5 +45,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

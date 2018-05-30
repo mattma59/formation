@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+
+    {% if errors %}
+
+        {{ errors.message }}
+
+    {% endif %}
+
+    {{ form(form) }}
+
+{% endblock %}
