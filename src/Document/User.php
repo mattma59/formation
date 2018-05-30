@@ -3,11 +3,48 @@
 namespace App\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @MongoDB\Document(repositoryClass="App\Repository\UserRepository")
+ * @MongoDB\HasLifecycleCallbacks()
  */
 class User
 {
+
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="string")
+     * @Assert\NotBlank(message = "Le prénom ne doit pas être vide")
+     */
+    protected $firstname;
+
+    /**
+     * @MongoDB\Field(type="string")
+     * @Assert\NotBlank(message = "Le nom ne doit pas être vide")
+     */
+    protected $lastname;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $email;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $password;
+
+    /**
+     * @MongoDB\Field(type="date")
+     */
+    protected $create_date;
+
+
     /**
      * @return mixed
      */
@@ -103,33 +140,13 @@ class User
     {
         $this->create_date = $create_date;
     }
-    /**
-     * @MongoDB\Id
-     */
-    protected $id;
 
     /**
-     * @MongoDB\Field(type="string")
+     * @MongoDB\PrePersist
      */
-    protected $firstname;
+    public function prePersist()
+    {
+        $this->setCreateDate(new \DateTime());
+    }
 
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $lastname;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $email;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $password;
-
-    /**
-     * @MongoDB\Field(type="date")
-     */
-    protected $create_date;
 }

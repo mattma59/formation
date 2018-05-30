@@ -46,25 +46,16 @@ class DoctrineController extends Controller
             ->findAllOrderedByName();
 
         //$connection = new \MongoClient();
-        /*$m = $this->container->get('doctrine_mongodb.odm.default_connection');
+        $m = $this->container->get('doctrine_mongodb.odm.default_connection');
         $db = $m->selectDatabase('fmt');
         //$db = $connection->user;
 
-        var_dump($db);
+        $collection = $db->collectionName;
 
-        $collection = $db->collectionName;*/
-/** @var Connection $dm */
-        $dm = $this->get('doctrine_mongodb');
-dump($dm);
-        /*$db = $dm->selectDatabase('fmt');
-        $listColl = $db->listCollections();
-
-        dump($listColl);*/
 
         return $this->render('doctrine/index.html.twig', [
             'controller_name' => 'DoctrineController',
-            'listuser' => $listUser,
-            'count' => $collection->count()
+            'listuser' => $listUser
 
         ]);
     }

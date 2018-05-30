@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <h2>Liste des utilisateurs</h2>
+
+    <ul class="list-unstyled">
+        {% for user in listuser %}
+            <li>
+
+                <a href="{{ path('form_updateuserform', {id: user.id}) }}">Modifier</a> /
+                <a href="{{ path('form_deleteuserform', {id: user.id}) }}">Supprimer</a>
+                : {{ user.lastname }} - {{ user.firstname }} - {{ user.email }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('form_userform') }}">Ajouter</a>
+
+{% endblock %}

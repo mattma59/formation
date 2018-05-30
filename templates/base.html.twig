@@ -37,14 +37,17 @@
                         <a class="dropdown-item" href="{{ path('ctrl_json') }}" target="_blank">Json</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('template_index') }}">Template</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Form</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ path('form_index') }}">Index</a>
+                        <a class="dropdown-item" href="{{ path('form_userform') }}">Ajout Utilisateur</a>
+                        <a class="dropdown-item" href="{{ path('form_bootstrap') }}">Ajout Utilisateur Bootstrap</a>
+                        <a class="dropdown-item" href="{{ path('form_listusers') }}">Liste Utilisateurs</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('template_index') }}">Template</a>
                 </li>
             </ul>
             <header class="mt-3">
