@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <a href="{{ pagination }}">Page 2</a><br>
+    <a href="{{ notfound }}">Page 404</a><br>
+    <a href="{{ ie }}">Page 500</a><br>
+    <a href="{{ google }}" target="_blank">Google</a><br>
+
+{% endblock %}

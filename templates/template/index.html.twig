@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    Hello {{ controller_name }}!
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .odd{
+            background-color: #f1f1f1
+        }
+        .even{
+            background-color: #c2c2c2;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <ul class="list-unstyled">
+        {% for value in 0..10 if value % 2 == 0 %}
+            <li>{{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr />
+
+    <ul class="list-unstyled">
+        {% for value in tab %}
+            <li>{{ value }}</li>
+        {% else %}
+            <li>Aucune donnée sauvegardée</li>
+        {% endfor %}
+    </ul>
+
+    <hr />
+
+    <ul class="list-unstyled">
+        {% for key, name in liste %}
+            {% if loop.first %}
+                <li class="text-success">{{ loop.index }} --> {{ name }} ({{ loop.revindex }})</li>
+            {% elseif loop.last %}
+                <li class="text-warning">{{ loop.index }} --> {{ name }} ({{ loop.revindex }})</li>
+            {% else %}
+                <li class="text-danger {{ cycle(['odd', 'even'], key) }}">
+                    {{ loop.index }} --> {{ name }} ({{ loop.revindex }})
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <hr />
+
+    <p class="text-red">Par la fonction toString : {{ person }}</p>
+
+    <p>Par la concaténation : {{ person.name ~ ' ' ~ person.lastname }}</p>
+
+    <p class="text-green">
+        {% for letter in 'a'|upper..'z'|upper %}
+            * {{ letter }}
+        {% endfor %}
+    </p>
+
+    {% set nom = 'Polo' %}
+
+    <p>Hello {{ nom }}</p>
+
+    {{ include('template/include.html.twig', {message: 'je transmets mon message'}) }}
+
+    {{ include('template/include.html') }}
+
+    <p>
+        <a href="{{ path('template_index', {code: 'z8tI8Cw1SeE'}) }}">Vidéo 1</a> |
+        <a href="{{ path('template_index', {code: 'qsSk7hWI3mY'}) }}">Vidéo 2</a> |
+        <a href="{{ path('template_index', {code: 'RmucuTYqAUw'}) }}">Vidéo 3</a> |
+    </p>
+
+{#{{ render(controller('App\\Controller\\TemplateController::video', {code:  code })) }}#}
+
+    {{ render_hinclude(controller('App\\Controller\\TemplateController::video', {code:  code })) }}
+
+
+{% endblock %}

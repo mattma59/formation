@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('notice') %}
+        {{ message }}
+    {% endfor %}
+
+    <p>Hello {{ name }}</p>
+
+    <a href="?save">Save Name</a><br>
+    <a href="?remove">REmove Name</a><br>
+    <a href="?flash">Flash message</a><br>
+
+{% endblock %}

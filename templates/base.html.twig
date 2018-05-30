@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('build/css/style.css') }}" />
+        <script src="{{ asset('jquery/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('popper/popper.js') }}"></script>
+        <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('js/hinclude.js') }}"></script>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <main class="container-fluid">
+            <ul class="nav justify-content-end">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Default</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('app_default_index') }}">Index</a>
+                        <a class="dropdown-item" href="{{ path('app_default_autowiring') }}">Autowiring</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Route</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('app_route_index', {name: "merci"}) }}">Index</a>
+                        <a class="dropdown-item" href="{{ path('app_route_number', {number: 35}) }}">Number</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Controller</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('ctrl_index') }}">Index</a>
+                        <a class="dropdown-item" href="{{ path('ctrl_response') }}" target="_blank">Response</a>
+                        <a class="dropdown-item" href="{{ path('ctrl_session') }}">Session</a>
+                        <a class="dropdown-item" href="{{ path('ctrl_json') }}" target="_blank">Json</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('template_index') }}">Template</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Form</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('form_index') }}">Index</a>
+                    </div>
+                </li>
+            </ul>
+            <header class="mt-3">
+                <h2>Formation Symfony</h2>
+                <hr />
+            </header>
+            <section>
+                {# Commentaire #}
+                {% block body %}{% endblock %}
+            </section>
+            <footer>
+                <hr />
+                <p class="text-center small">Formation Mai 2018</p>
+            </footer>
+        </main>
+    </body>
+</html>
