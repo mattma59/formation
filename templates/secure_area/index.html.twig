@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <li>Gérer ceci</li>
+            <li>Ligne 2</li>
+            <li>Ligne 3</li>
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>Lignes Admin</li>
+            <li>Lignes ADmin 2</li>
+            <li>Admin 3</li>
+        {% endif %}
+
+    </ul>
+
+{% endblock %}
