@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <div class="my-3">
+        <a href="{{ path('i18n_index', {'_locale': 'fr'}) }}" class="badge badge-success">{{ 'lang.fr'|trans }}</a>
+        <a href="{{ path('i18n_index', {'_locale': 'en'}) }}" class="badge badge-dark">{{ 'lang.en'|trans }}</a>
+
+    </div>
+
+    <p>{{ informations }}</p>
+
+    <p>
+        {% if count > 1 %}
+            {{ 'visiteurs.count' | transchoice(count, {'%count%': count}) }}
+        {% else %}
+            {{ 'visiteurs.count' | transchoice(count) }}
+        {% endif %}
+    </p>
+
+    <p>{{ 'info.maj.message' | transchoice(countmaj) }}
+    </p>
+
+{% endblock %}
