@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Document\User;
 use App\Form\UserType;
+use App\Service\Checkunique;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -99,8 +100,10 @@ class FormController extends Controller
     /**
      * @Route("/user", name="form_userform")
      */
-    public function userForm(Request $request)
+    public function userForm(Request $request, Checkunique $checkunique)
     {
+        $errorMessage = null;
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->add('save', SubmitType::class, [
@@ -116,11 +119,17 @@ class FormController extends Controller
             /** @var User $user */
             $user = $form->getData();
 
-            $dm = $this->get('doctrine_mongodb')->getManager();
-            $dm->persist($user);
-            $dm->flush();
+            if ($checkunique->isUniqueValue(User::class, 'lastname', $user->getLastname())) {
 
-            return $this->redirectToRoute('form_listusers');
+                $dm = $this->get('doctrine_mongodb')->getManager();
+                $dm->persist($user);
+                $dm->flush();
+
+                return $this->redirectToRoute('form_listusers');
+            } else {
+                $errorMessage = $checkunique->getMessageErreur();
+            }
+
 
 
             dump($user);
@@ -128,7 +137,8 @@ class FormController extends Controller
 
         return $this->render('form/user.html.twig', [
             'controller_name' => 'FormController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'error_message' => $errorMessage
         ]);
     }
 

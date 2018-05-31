@@ -20,7 +20,7 @@ class UserVoter extends Voter
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
-        $role = $user->getRoles()[0];
+        //$role = $user->getRoles()[0];
 
         // if the user is anonymous, do not grant access
         if (!$user instanceof UserInterface) {
