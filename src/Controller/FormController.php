@@ -120,6 +120,9 @@ class FormController extends Controller
             $dm->persist($user);
             $dm->flush();
 
+            return $this->redirectToRoute('form_listusers');
+
+
             dump($user);
         }
 
@@ -199,6 +202,9 @@ class FormController extends Controller
             ]
         ]);
 
+
+        $this->denyAccessUnlessGranted('edit', $user);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -209,6 +215,8 @@ class FormController extends Controller
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($user);
             $dm->flush();
+
+            return $this->redirectToRoute('form_listusers');
 
             dump($user);
         }
@@ -227,6 +235,8 @@ class FormController extends Controller
         $user = $this->get('doctrine_mongodb')
             ->getRepository(User::class)
             ->find($id);
+
+        $this->denyAccessUnlessGranted('delete', $user);
 
         $dm = $this->get('doctrine_mongodb')->getManager();
         $dm->remove($user);

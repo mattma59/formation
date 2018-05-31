@@ -4,13 +4,16 @@ security:
     role_hierarchy:
         ROLE_USER: ~
         ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory:
                 users:
+                    user: {password: user, roles: ['ROLE_USER']}
                     admin: {password: admin, roles: ['ROLE_ADMIN']}
+                    superadmin: {password: admin, roles: ['ROLE_SUPER_ADMIN']}
     firewalls:
         auth_area:
             pattern: ^/admin/login$
