@@ -9,7 +9,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class I18nController extends Controller
 {
     /**
-     * @Route("/{_locale}/i18n", name="i18n_index")
+     * @Route("/i18n", name="i18n_index")
      */
     public function index(TranslatorInterface $translator)
     {

@@ -38,9 +38,9 @@ class AuthenticationController extends Controller
 
         $form = $this->createFormBuilder()
                     ->setAction($this->generateUrl('auth_check'))
-                    ->add('login', TextType::class)
-                    ->add('password', PasswordType::class)
-                    ->add('save', SubmitType::class, ['label' => 'Log in'])
+                    ->add('login', TextType::class, ['label' => 'form.auth.login'])
+                    ->add('password', PasswordType::class, ['label' => 'form.auth.password'])
+                    ->add('save', SubmitType::class, ['label' => 'form.auth.save'])
                     ->getForm();
 
         return $this->render('authentication/login.html.twig', [

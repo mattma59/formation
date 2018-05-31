@@ -1,0 +1,2 @@
+errors.user.firstname.empty: "Le prénom ne doit pas être vide"
+errors.user.lastname.empty: "Le nom ne doit pas être vide"

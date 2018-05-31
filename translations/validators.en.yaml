@@ -1,0 +1,2 @@
+errors.user.firstname.empty: "Firstname can't be empty"
+errors.user.lastname.empty: "Lastname can't be empty"

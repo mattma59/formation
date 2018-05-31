@@ -4,3 +4,6 @@ lang:
 informations: Translations in english
 visiteurs.count: You're alone | There are %count% people on the website
 info.maj.message: "{0} No update available | {1} 1 update available | ]1, Inf] Several updates available"
+form.auth.login: Login
+form.auth.password: Password
+form.auth.save: Log in

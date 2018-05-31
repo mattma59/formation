@@ -4,3 +4,6 @@ lang:
 informations: Traductions en français
 visiteurs.count: Vous êtes seul sur le site | Il y a %count% personnes sur le site
 info.maj.message: "{0} Aucune maj disponible | {1} 1 maj disponible | ]1, Inf] Plusieurs maj disponibles"
+form.auth.login: Identifiant
+form.auth.password: Mot de passe
+form.auth.save: Connexion

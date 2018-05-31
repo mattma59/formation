@@ -19,13 +19,13 @@ class User
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\NotBlank(message = "Le prénom ne doit pas être vide")
+     * @Assert\NotBlank(message = "errors.user.firstname.empty")
      */
     protected $firstname;
 
     /**
      * @MongoDB\Field(type="string")
-     * @Assert\NotBlank(message = "Le nom ne doit pas être vide")
+     * @Assert\NotBlank(message = "errors.user.lastname.empty")
      */
     protected $lastname;
 
